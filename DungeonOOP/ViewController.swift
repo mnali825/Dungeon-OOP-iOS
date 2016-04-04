@@ -10,16 +10,120 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var actionLabel: UILabel!
+    @IBOutlet var enemyHP: UILabel!
+    @IBOutlet var playerHP: UILabel!
+    @IBOutlet var enemyImage: UIImageView!
+    @IBOutlet var chestImage: UIButton!
+    
+    @IBOutlet var playerName: UILabel!
+    @IBOutlet var playerAtk: UILabel!
+    @IBOutlet var playerHealth: UILabel!
+    @IBOutlet var enemyType: UILabel!
+    @IBOutlet var enemyImmune: UILabel!
+    
+    @IBOutlet var statIncrease: UIView!
+    @IBOutlet var statIncreaseLabel: UILabel!
+    
+    var player:Character!
+    var enemy:Enemy!
+    var chestMessage: String!
+    var currentLoot: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        player = Character(HP: 100, name: "Mir0ko", type: "Human")
+        playerHP.text = "\(player.HP) HP"
+        generateEnemy()
+        playerName.text = "\(player.name)"
+        playerAtk.text = "Attack : \(player.attackPower)"
+        playerHealth.text = "Health : \(player.HP)"
+        
+        }
+    
+    func generateEnemy() {
+
+        let rand1 = Int(arc4random_uniform(10))
+        let rand2 = Int(arc4random_uniform(20))
+        if player.attackPower <= 15 {
+            enemy = Enemy(immunity: rand1, HP: 100, name: "Orc", type: "Orc")
+        } else {
+            enemy = enemyMid(immunity: rand2, HP: 100, name: "Orc", type: "Warlock")
+        }
+        
+        
+        actionLabel.text = "Encountered \(enemy.type) with \(enemy.immunity) Immunity"
+        enemyHP.text = "\(enemy.HP) HP"
+        enemyType.text = "Type : \(enemy.type)"
+        enemyImmune.text = "Immune : \(enemy.immunity)"
+        enemyImage.hidden = false
+    }
+    
+    @IBAction func attack(sender: AnyObject) {
+        if enemy.HP > 0 {
+            let type = enemy.type
+            if enemy.attack(player.attackPower){
+                
+                actionLabel.text = "\(player.name) attacked \(type) for \(player.attackPower) damage"
+                
+            } else {
+                
+                actionLabel.text = "\(type) is immune to your attacks!"
+            }
+        }
+        
+        if let loot = enemy.dropLoot() {
+            chestMessage = "\(enemy.type) dropped \(loot)!"
+            currentLoot = loot
+        }
+        
+        if !enemy.isAlive() {
+            enemyImage.hidden = true
+            chestImage.hidden = false
+            enemyHP.text = ""
+            actionLabel.text = "\(player.name) killed \(enemy.type)"
+            
+        }
+        
+        enemyHP.text = "\(enemy.HP) HP"
+    }
+    
+    @IBAction func runAway(sender: AnyObject) {
+        enemyImage.hidden = true
+        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: "generateEnemy", userInfo: nil, repeats: false)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func tapChest(sender: AnyObject) {
+        chestImage.hidden = true
+        actionLabel.text = chestMessage
+        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: "generateEnemy", userInfo: nil, repeats: false)
+        
+        statIncreaseLabel.text = "+\(enemy.lootVal[currentLoot]!) \(enemy.lootType[currentLoot]!)"
+        statIncrease.hidden = false
+
     }
 
-
+    
+    func addStats(loot: String) {
+        if loot == "Rusty Dagger" {
+            player.attackPower += enemy.lootVal[loot]!
+            playerAtk.text = "Attack : \(player.attackPower)"
+        }
+        else if loot == "Cracked Shield" {
+            player.HP += enemy.lootVal[loot]!
+            playerHP.text = "Health : \(player.HP)"
+            playerHealth.text = "Health : \(player.HP)"
+            
+        }
+        else if loot == "Worn Gloves" {
+            player.attackPower += enemy.lootVal[loot]!
+            playerAtk.text = "Attack : \(player.attackPower)"
+        }
+    }
+    
+    @IBAction func addStatBox(sender: AnyObject) {
+        statIncrease.hidden = true
+        addStats(currentLoot)
+    }
 }
 
