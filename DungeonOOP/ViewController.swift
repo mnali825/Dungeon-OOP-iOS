@@ -56,10 +56,10 @@ class ViewController: UIViewController {
         enemyHP.text = "\(enemy.HP) HP"
         enemyType.text = "Type : \(enemy.type)"
         enemyImmune.text = "Immune : \(enemy.immunity)"
-        enemyImage.hidden = false
+        enemyImage.isHidden = false
     }
     
-    @IBAction func attack(sender: AnyObject) {
+    @IBAction func attack(_ sender: AnyObject) {
         if enemy.HP > 0 {
             let type = enemy.type
             if enemy.attack(player.attackPower){
@@ -78,8 +78,8 @@ class ViewController: UIViewController {
         }
         
         if !enemy.isAlive() {
-            enemyImage.hidden = true
-            chestImage.hidden = false
+            enemyImage.isHidden = true
+            chestImage.isHidden = false
             enemyHP.text = ""
             actionLabel.text = "\(player.name) killed \(enemy.type)"
             
@@ -88,23 +88,23 @@ class ViewController: UIViewController {
         enemyHP.text = "\(enemy.HP) HP"
     }
     
-    @IBAction func runAway(sender: AnyObject) {
-        enemyImage.hidden = true
-        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: "generateEnemy", userInfo: nil, repeats: false)
+    @IBAction func runAway(_ sender: AnyObject) {
+        enemyImage.isHidden = true
+        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ViewController.generateEnemy), userInfo: nil, repeats: false)
     }
 
-    @IBAction func tapChest(sender: AnyObject) {
-        chestImage.hidden = true
+    @IBAction func tapChest(_ sender: AnyObject) {
+        chestImage.isHidden = true
         actionLabel.text = chestMessage
-        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: "generateEnemy", userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ViewController.generateEnemy), userInfo: nil, repeats: false)
         
         statIncreaseLabel.text = "+\(enemy.lootVal[currentLoot]!) \(enemy.lootType[currentLoot]!)"
-        statIncrease.hidden = false
+        statIncrease.isHidden = false
 
     }
 
     
-    func addStats(loot: String) {
+    func addStats(_ loot: String) {
         if loot == "Rusty Dagger" {
             player.attackPower += enemy.lootVal[loot]!
             playerAtk.text = "Attack : \(player.attackPower)"
@@ -121,8 +121,8 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func addStatBox(sender: AnyObject) {
-        statIncrease.hidden = true
+    @IBAction func addStatBox(_ sender: AnyObject) {
+        statIncrease.isHidden = true
         addStats(currentLoot)
     }
 }

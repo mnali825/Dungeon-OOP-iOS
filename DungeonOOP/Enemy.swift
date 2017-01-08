@@ -29,7 +29,7 @@ class Enemy: Character {
     
     }
     
-    func increaseStats(player:Character, loots:String) {
+    func increaseStats(_ player:Character, loots:String) {
         if loots == "Rusty Dagger" {
             player.attackPower += lootVal["Rusty Dagger"]!
         }
@@ -53,7 +53,7 @@ class Enemy: Character {
         
     }
     
-    override func attack(damage: Int)-> Bool{
+    override func attack(_ damage: Int)-> Bool{
         if damage >= immunity {
             super.attack(damage)
             return true

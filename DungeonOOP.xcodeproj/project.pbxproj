@@ -203,15 +203,18 @@
 					E9AF9BA01C8916020020B83E = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = RJNMP7GN27;
+						LastSwiftMigration = 0820;
 					};
 					E9AF9BB41C8916030020B83E = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = RJNMP7GN27;
+						LastSwiftMigration = 0820;
 						TestTargetID = E9AF9BA01C8916020020B83E;
 					};
 					E9AF9BBF1C8916040020B83E = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = RJNMP7GN27;
+						LastSwiftMigration = 0820;
 						TestTargetID = E9AF9BA01C8916020020B83E;
 					};
 				};
@@ -418,6 +421,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.herban.DungeonOOP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -429,6 +433,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.herban.DungeonOOP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -440,6 +445,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.herban.DungeonOOPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DungeonOOP.app/DungeonOOP";
 			};
 			name = Debug;
@@ -452,6 +458,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.herban.DungeonOOPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DungeonOOP.app/DungeonOOP";
 			};
 			name = Release;
@@ -463,6 +470,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.herban.DungeonOOPUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DungeonOOP;
 				USES_XCTRUNNER = YES;
 			};
@@ -475,6 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.herban.DungeonOOPUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DungeonOOP;
 				USES_XCTRUNNER = YES;
 			};
@@ -499,6 +508,7 @@
 				E9AF9BCB1C8916060020B83E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9AF9BCC1C8916060020B83E /* Build configuration list for PBXNativeTarget "DungeonOOPTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +517,7 @@
 				E9AF9BCE1C8916060020B83E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9AF9BCF1C8916060020B83E /* Build configuration list for PBXNativeTarget "DungeonOOPUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +526,7 @@
 				E9AF9BD11C8916060020B83E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

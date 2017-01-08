@@ -11,7 +11,7 @@ import Foundation
 class Character {
     
     var HP = 100
-    private var _name: String = "Player"
+    fileprivate var _name: String = "Player"
     var attackPower: Int = 10 
     var type: String!
     
@@ -36,7 +36,7 @@ class Character {
         }
     }
     
-    func attack(damage:Int)->Bool {
+    func attack(_ damage:Int)->Bool {
         self.HP -= damage
         return true
     }
